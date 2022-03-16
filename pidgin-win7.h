@@ -256,13 +256,6 @@ EXTERN_C const IID IID_ICustomDestinationList = {0x6332debf,0x87b5,0x4670,{0x90,
 
 #endif  // __ICustomDestinationList_INTERFACE_DEFINED__
 
-const CLSID CLSID_DestinationList = {
-  0x77f10cf0, 0x3db5, 0x4966, {0xb5, 0x20, 0xb7, 0xc5, 0x4f, 0xd3, 0x5e, 0xd6}
-};
-
-const CLSID CLSID_EnumerableObjectCollection = {
-  0x2d3468c1, 0x36a7, 0x43b6, {0xac, 0x24, 0xd3, 0xf0, 0x2f, 0xd9, 0x60, 0x7a}
-};
 
 #ifndef DEFINE_PROPERTYKEY
 typedef struct {
@@ -348,147 +341,11 @@ extern "C" const CLSID CLSID_CustomDestinationList      = {0x77f10cf0,0x3db5,0x4
 extern "C" const CLSID CLSID_EnumerableObjectCollection = {0x2d3468c1,0x36a7,0x43b6,{0xac,0x24,0xd3,0xf0,0x2f,0xd9,0x60,0x7a}};
 */
 
-EXTERN_C const IID IID_ITaskbarList3 = {0xea1afb91,0x9e28,0x4b86,{0x90,0xe9,0x9e,0x9f,0x8a,0x5e,0xef,0xaf}}; // ea1afb91-9e28-4b86-90e9-9e9f8a5eefaf
-EXTERN_C const CLSID CLSID_TaskbarList = {0x56fdf344,0xfd6d,0x11d0,{0x95,0x8a,0x00,0x60,0x97,0xc9,0xa0,0x90}}; // 56fdf344-fd6d-11d0-958a-006097c9a090;
-
-typedef enum TBPFLAG
-{
-    TBPF_NOPROGRESS = 0,
-    TBPF_INDETERMINATE      = 0x1,
-    TBPF_NORMAL     = 0x2,
-    TBPF_ERROR      = 0x4,
-    TBPF_PAUSED     = 0x8
-} TBPFLAG;
-
 typedef enum TBATFLAG
 {
     TBATF_USEMDITHUMBNAIL   = 0x1,
     TBATF_USEMDILIVEPREVIEW = 0x2
 } TBATFLAG;
-
-typedef struct tagTHUMBBUTTON
-{
-    DWORD dwMask;
-    UINT iId;
-    UINT iBitmap;
-    HICON hIcon;
-    //    WCHAR pszTip[ 260 ];
-    wchar_t pszTip[ 260 ];
-    DWORD dwFlags;
-} THUMBBUTTON;
-
-typedef struct tagTHUMBBUTTON *LPTHUMBBUTTON;
-
-typedef struct ITaskbarList3Vtbl
-{
-
-	BEGIN_INTERFACE
-    HRESULT ( STDMETHODCALLTYPE *QueryInterface )(
-		ITaskbarList3 * This, 
-		REFIID riid, 
-		void **ppvObject);
-
-    ULONG ( STDMETHODCALLTYPE *AddRef )( 
-		ITaskbarList3 * This);
-
-    ULONG ( STDMETHODCALLTYPE *Release )( 
-		ITaskbarList3 * This);
-
-    HRESULT ( STDMETHODCALLTYPE *HrInit )( 
-		ITaskbarList3 * This);
-
-    HRESULT ( STDMETHODCALLTYPE *AddTab )( 
-		ITaskbarList3 * This, 
-		HWND hwnd);
-
-    HRESULT ( STDMETHODCALLTYPE *DeleteTab )( 
-		ITaskbarList3 * This, 
-		HWND hwnd);
-
-    HRESULT ( STDMETHODCALLTYPE *ActivateTab )( 
-		ITaskbarList3 * This, 
-		HWND hwnd);
-
-    HRESULT ( STDMETHODCALLTYPE *SetActiveAlt )( 
-		ITaskbarList3 * This, 
-		HWND hwnd);
-
-    HRESULT ( STDMETHODCALLTYPE *MarkFullscreenWindow )( 
-		ITaskbarList3 * This, 
-		HWND hwnd,
-        BOOL fFullscreen);
-
-    HRESULT ( STDMETHODCALLTYPE *SetProgressValue )( 
-		ITaskbarList3 * This, 
-		HWND hwnd,
-        ULONGLONG ullCompleted, 
-		ULONGLONG ullTotal);
-
-    HRESULT ( STDMETHODCALLTYPE *SetProgressState )( 
-		ITaskbarList3 * This, 
-		HWND hwnd,
-        TBPFLAG tbpFlags);
-
-    HRESULT ( STDMETHODCALLTYPE *RegisterTab )(  
-		ITaskbarList3 * This, 
-		HWND hwndTab, 
-		HWND hwndMDI);
-
-    HRESULT ( STDMETHODCALLTYPE *UnregisterTab )( 
-		ITaskbarList3 * This, 
-		HWND hwndTab);
-
-    HRESULT ( STDMETHODCALLTYPE *SetTabOrder )( 
-		ITaskbarList3 * This, 
-		HWND hwndTab,
-        HWND hwndInsertBefore);
-
-    HRESULT ( STDMETHODCALLTYPE *SetTabActive )( 
-		ITaskbarList3 * This, 
-		HWND hwndTab,
-        HWND hwndMDI, 
-		TBATFLAG tbatFlags);
-
-    HRESULT ( STDMETHODCALLTYPE *ThumbBarAddButtons )( 
-		ITaskbarList3 * This, 
-		HWND hwnd,
-        UINT cButtons, 
-		LPTHUMBBUTTON pButton);
-
-    HRESULT ( STDMETHODCALLTYPE *ThumbBarUpdateButtons )( 
-		ITaskbarList3 * This, 
-		HWND hwnd,
-        UINT cButtons, 
-		LPTHUMBBUTTON pButton);
-
-    HRESULT ( STDMETHODCALLTYPE *ThumbBarSetImageList )( 
-		ITaskbarList3 * This, 
-		HWND hwnd,
-        HIMAGELIST himl);
-
-    HRESULT ( STDMETHODCALLTYPE *SetOverlayIcon )( 
-		ITaskbarList3 * This, 
-		HWND hwnd,
-        HICON hIcon, 
-		LPCWSTR pszDescription);
-
-    HRESULT ( STDMETHODCALLTYPE *SetThumbnailTooltip )( 
-		ITaskbarList3 * This, 
-		HWND hwnd,
-        LPCWSTR pszTip);
-
-    HRESULT ( STDMETHODCALLTYPE *SetThumbnailClip )( 
-		ITaskbarList3 * This, 
-		HWND hwnd,
-        RECT *prcClip);
-
-	END_INTERFACE
-} ITaskbarList3Vtbl;
-
-interface ITaskbarList3
-{
-	CONST_VTBL struct ITaskbarList3Vtbl *lpVtbl;
-};
 
 #ifndef WM_DWMSENDICONICTHUMBNAIL
 #	define WM_DWMSENDICONICTHUMBNAIL           0x0323
